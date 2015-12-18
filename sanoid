@@ -16,8 +16,13 @@ my $pscmd = '/bin/ps';
 
 my $zfs = '/sbin/zfs';
 
-my $conf_file = '/etc/sanoid/sanoid.conf';
-my $default_conf_file = '/etc/sanoid/sanoid.defaults.conf';
+my $conf_dir = '/etc';
+if ($^O = ~ /bsd$/) {
+  $conf_dir = '/usr/local/etc';
+}
+
+my $conf_file = $conf_dir . '/sanoid/sanoid.conf';
+my $default_conf_file = $conf_dir . '/sanoid/sanoid.defaults.conf';
 
 # parse CLI arguments
 my %args = getargs(@ARGV);
